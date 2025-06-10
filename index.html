@@ -5,24 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Birthday Wish for My Love</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     html, body {
       height: 100%;
       width: 100%;
-      background: black;
       font-family: 'Comic Sans MS', cursive, sans-serif;
       color: white;
-      overflow: hidden;
+      background: black;
+      /* ✅ Allow scrolling on pages */
+      overflow: auto;
     }
     .page {
       display: none;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
-      width: 100vw;
+      justify-content: center;
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       padding: 20px;
     }
     .active {
@@ -30,11 +36,52 @@
       animation: fadeIn 1s ease forwards;
     }
     @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    /* Stars, moon, meteor */
+    /* Scrollable pages */
+    #page3, #page4 {
+      overflow-y: auto;
+      padding-top: 40px;
+      padding-bottom: 60px;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Button styles */
+    #clickMeBtn, .nextBtn, #toPage4 {
+      margin-top: 20px;
+      background: linear-gradient(45deg, #ff758c, #ff7eb3);
+      border: none;
+      border-radius: 50px;
+      padding: 15px 50px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 126, 179, 0.7);
+      transition: transform 0.3s ease;
+    }
+    #clickMeBtn:hover, .nextBtn:hover, #toPage4:hover {
+      transform: translateY(-6px);
+    }
+
+    #clickMeBtn::before {
+      content: "✈️";
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%) rotate(10deg);
+      font-size: 1.6rem;
+      animation: planeFly 2s infinite alternate ease-in-out;
+    }
+    @keyframes planeFly {
+      0% { left: 15px; transform: translateY(-50%) rotate(10deg); }
+      100% { left: 25px; transform: translateY(-60%) rotate(0deg); }
+    }
+
+    /* Page 1: Starry sky */
     #page1 {
       background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
       overflow: hidden;
@@ -78,50 +125,30 @@
       100% { left: 110vw; top: 80vh; opacity: 0; }
     }
 
-    #clickMeBtn, .nextBtn, #toPage4 {
-      margin-top: 20px;
-      background: linear-gradient(45deg, #ff758c, #ff7eb3);
-      border: none;
-      border-radius: 50px;
-      padding: 15px 50px;
-      font-size: 1.3rem;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(255, 126, 179, 0.7);
-      transition: transform 0.3s ease;
-    }
-    #clickMeBtn:hover, .nextBtn:hover, #toPage4:hover {
-      transform: translateY(-6px);
-    }
-    #clickMeBtn::before {
-      content: "✈️";
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%) rotate(10deg);
-      font-size: 1.6rem;
-      animation: planeFly 2s infinite alternate ease-in-out;
-    }
-    @keyframes planeFly {
-      0% { left: 15px; transform: translateY(-50%) rotate(10deg); }
-      100% { left: 25px; transform: translateY(-60%) rotate(0deg); }
-    }
-
     /* Page 2 */
     #page2 {
       background: #2c3e50;
     }
-    #bubuGif {
-      width: 200px;
-      height: 200px;
-      animation: bounceIn 1s ease forwards;
+    #bubuImage {
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    animation: bounceIn 1s ease forwards;
+  }
+
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.3);
+      opacity: 0;
     }
-    @keyframes bounceIn {
-      0% { transform: scale(0.3); opacity: 0; }
-      60% { transform: scale(1.2); opacity: 1; }
-      100% { transform: scale(1); }
+    60% {
+      transform: scale(1.2);
+      opacity: 1;
     }
+    100% {
+      transform: scale(1);
+    }
+  }
     .dialog {
       margin-top: 20px;
       max-width: 280px;
@@ -133,30 +160,11 @@
       font-weight: bold;
       box-shadow: 0 4px 10px rgba(0,0,0,0.25);
       position: relative;
-      animation: fadeInUp 1s ease forwards 1s;
-    }
-    .dialog::after {
-      content: "";
-      position: absolute;
-      bottom: 100%;
-      left: 25px;
-      border-width: 10px;
-      border-style: solid;
-      border-color: transparent transparent #ffe4e1 transparent;
-    }
-    @keyframes fadeInUp {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
     }
 
-    /* Page 3 */
+    /* Page 3: Envelope and Letter */
     #page3 {
       background: #551a8b;
-      overflow-y: auto;
-      height: 100vh;
-      padding-top: 40px;
-      padding-bottom: 60px;
-      justify-content: flex-start;
     }
     #envelopeContainer {
       display: flex;
@@ -220,10 +228,6 @@
     /* Page 4 */
     #page4 {
       background: #0a0a2a;
-      flex-direction: column;
-      justify-content: flex-start;
-      overflow: hidden;
-      padding-top: 40px;
     }
     #fireworksCanvas {
       position: fixed;
@@ -280,7 +284,11 @@
 
 <!-- Page 2 -->
 <div id="page2" class="page">
-  <img id="bubuGif" src="https://media.tenor.com/sseeyall-bubu-dudu.gif" alt="Dudu Bubu" />
+ <img
+  id="bubuImage"
+  src="https://i.ibb.co/60h88TG3/bubu-dudu-romantic-birthday.jpg"
+  alt="Bubu Dudu Birthday"
+/>
   <div class="dialog">Hey Bubu Rani! Happy Birthday to the most amazing person in my life! 🎂🎉</div>
   <button class="nextBtn" id="toPage3">Open Your Gift</button>
 </div>
@@ -338,7 +346,6 @@
     loveLetter.style.display = envelope.classList.contains('open') ? 'block' : 'none';
   });
 
-  // Fireworks canvas
   const canvas = document.getElementById('fireworksCanvas');
   const ctx = canvas.getContext('2d');
   function resizeCanvas() {
@@ -415,5 +422,6 @@
   }
   animateFireworks();
 </script>
+
 </body>
 </html>
