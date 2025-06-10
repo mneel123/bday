@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Birthday Wish for My Love</title>
   <style>
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       height: 100%;
       width: 100%;
@@ -21,7 +19,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      height: 100vh;
       width: 100vw;
       position: absolute;
       top: 0; left: 0;
@@ -36,6 +34,7 @@
       to {opacity: 1;}
     }
 
+    /* Stars, moon, meteor */
     #page1 {
       background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
       overflow: hidden;
@@ -79,22 +78,21 @@
       100% { left: 110vw; top: 80vh; opacity: 0; }
     }
 
-    #clickMeBtn {
-      position: relative;
+    #clickMeBtn, .nextBtn, #toPage4 {
+      margin-top: 20px;
       background: linear-gradient(45deg, #ff758c, #ff7eb3);
       border: none;
-      border-radius: 40px;
+      border-radius: 50px;
       padding: 15px 50px;
-      font-size: 1.8rem;
+      font-size: 1.3rem;
       font-weight: bold;
       color: white;
       cursor: pointer;
-      overflow: visible;
       box-shadow: 0 5px 15px rgba(255, 126, 179, 0.7);
       transition: transform 0.3s ease;
     }
-    #clickMeBtn:hover {
-      transform: translateY(-8px) rotate(-5deg);
+    #clickMeBtn:hover, .nextBtn:hover, #toPage4:hover {
+      transform: translateY(-6px);
     }
     #clickMeBtn::before {
       content: "✈️";
@@ -110,6 +108,7 @@
       100% { left: 25px; transform: translateY(-60%) rotate(0deg); }
     }
 
+    /* Page 2 */
     #page2 {
       background: #2c3e50;
     }
@@ -150,21 +149,21 @@
       to {opacity: 1; transform: translateY(0);}
     }
 
+    /* Page 3 */
     #page3 {
       background: #551a8b;
       overflow-y: auto;
-      padding-bottom: 40px;
+      height: 100vh;
+      padding-top: 40px;
+      padding-bottom: 60px;
+      justify-content: flex-start;
     }
-
     #envelopeContainer {
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
+      align-items: center;
       cursor: pointer;
-      padding: 40px 0;
     }
-
     #envelope {
       position: relative;
       width: 250px;
@@ -174,9 +173,7 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.3);
       transform-style: preserve-3d;
       transition: transform 1s ease;
-      perspective: 1000px;
     }
-
     #envelope::before {
       content: '';
       position: absolute;
@@ -192,11 +189,9 @@
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
     }
-
     #envelope.open::before {
       transform: rotateX(-150deg);
     }
-
     #heartSticker {
       position: absolute;
       top: 50%;
@@ -205,38 +200,24 @@
       font-size: 2rem;
       z-index: 3;
     }
-
     #loveLetter {
       margin-top: 20px;
       width: 90%;
       max-width: 350px;
-      max-height: 400px;
+      max-height: 300px;
       background: repeating-linear-gradient(#fff0f5, #fff0f5 29px, #ffe4f8 30px);
+      padding: 20px;
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(255, 105, 180, 0.7);
-      padding: 25px;
-      font-size: 1.2rem;
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
       line-height: 1.6;
       color: #551a8b;
-      font-family: 'Georgia', serif;
-      text-align: left;
       display: none;
       overflow-y: auto;
     }
 
-    #toPage4 {
-      margin-top: 20px;
-      display: none;
-      background: linear-gradient(45deg, #ff758c, #ff7eb3);
-      border: none;
-      border-radius: 50px;
-      padding: 12px 50px;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: white;
-      cursor: pointer;
-    }
-
+    /* Page 4 */
     #page4 {
       background: #0a0a2a;
       flex-direction: column;
@@ -244,7 +225,6 @@
       overflow: hidden;
       padding-top: 40px;
     }
-
     #fireworksCanvas {
       position: fixed;
       top: 0; left: 0;
@@ -253,7 +233,6 @@
       pointer-events: none;
       z-index: 1;
     }
-
     #finalWish {
       font-size: 2.5rem;
       font-weight: 900;
@@ -265,7 +244,6 @@
     #finalWish span {
       color: #fff0f5;
     }
-
     #photosContainer {
       display: flex;
       gap: 20px;
@@ -283,23 +261,11 @@
     #photosContainer img:hover {
       transform: scale(1.1);
     }
-
-    .nextBtn {
-      margin-top: 30px;
-      background: linear-gradient(45deg, #ff758c, #ff7eb3);
-      border: none;
-      border-radius: 50px;
-      padding: 12px 50px;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: white;
-      cursor: pointer;
-    }
-
   </style>
 </head>
 <body>
 
+<!-- Page 1 -->
 <div id="page1" class="page active">
   <div class="star" style="top:10%; left:15%; width:4px; height:4px;"></div>
   <div class="star" style="top:20%; left:70%; width:3px; height:3px;"></div>
@@ -312,17 +278,17 @@
   <button id="clickMeBtn">Click Me</button>
 </div>
 
+<!-- Page 2 -->
 <div id="page2" class="page">
-  <img id="bubuGif" src="https://media.tenor.com/sseeyall-bubu-dudu.gif" alt="Dudu Bubu Birthday" />
+  <img id="bubuGif" src="https://media.tenor.com/sseeyall-bubu-dudu.gif" alt="Dudu Bubu" />
   <div class="dialog">Hey Bubu Rani! Happy Birthday to the most amazing person in my life! 🎂🎉</div>
   <button class="nextBtn" id="toPage3">Open Your Gift</button>
 </div>
 
+<!-- Page 3 -->
 <div id="page3" class="page">
   <div id="envelopeContainer">
-    <div id="envelope">
-      <div id="heartSticker">❤️</div>
-    </div>
+    <div id="envelope"><div id="heartSticker">❤️</div></div>
   </div>
   <div id="loveLetter">
     My Dearest Love,<br/><br/>
@@ -334,6 +300,7 @@
   <button id="toPage4">See Fireworks & Wishes</button>
 </div>
 
+<!-- Page 4 -->
 <div id="page4" class="page">
   <canvas id="fireworksCanvas"></canvas>
   <h1 id="finalWish">Happy Birthday, <span>My Love! ❤️</span></h1>
@@ -343,54 +310,32 @@
   </div>
 </div>
 
-<audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
-
 <script>
   const page1 = document.getElementById('page1');
   const page2 = document.getElementById('page2');
   const page3 = document.getElementById('page3');
   const page4 = document.getElementById('page4');
 
-  const clickMeBtn = document.getElementById('clickMeBtn');
-  const toPage3Btn = document.getElementById('toPage3');
-  const toPage4Btn = document.getElementById('toPage4');
-
-  const envelope = document.getElementById('envelope');
-  const loveLetter = document.getElementById('loveLetter');
-  const bgMusic = document.getElementById('bgMusic');
-
-  function playMusic() {
-    bgMusic.play().catch(() => {});
-  }
-
-  clickMeBtn.addEventListener('click', () => {
-    playMusic();
+  document.getElementById('clickMeBtn').addEventListener('click', () => {
     page1.classList.remove('active');
     page2.classList.add('active');
   });
 
-  toPage3Btn.addEventListener('click', () => {
+  document.getElementById('toPage3').addEventListener('click', () => {
     page2.classList.remove('active');
     page3.classList.add('active');
   });
 
-  let envelopeOpen = false;
-  envelope.addEventListener('click', () => {
-    envelopeOpen = !envelopeOpen;
-    if (envelopeOpen) {
-      envelope.classList.add('open');
-      loveLetter.style.display = 'block';
-      toPage4Btn.style.display = 'inline-block';
-    } else {
-      envelope.classList.remove('open');
-      loveLetter.style.display = 'none';
-      toPage4Btn.style.display = 'none';
-    }
-  });
-
-  toPage4Btn.addEventListener('click', () => {
+  document.getElementById('toPage4').addEventListener('click', () => {
     page3.classList.remove('active');
     page4.classList.add('active');
+  });
+
+  const envelope = document.getElementById('envelope');
+  const loveLetter = document.getElementById('loveLetter');
+  envelope.addEventListener('click', () => {
+    envelope.classList.toggle('open');
+    loveLetter.style.display = envelope.classList.contains('open') ? 'block' : 'none';
   });
 
   // Fireworks canvas
@@ -463,16 +408,11 @@
         p.draw(ctx);
         if (p.life > 0) allDead = false;
       });
-      if (allDead) {
-        fireworks.splice(i, 1);
-      }
+      if (allDead) fireworks.splice(i, 1);
     }
-    if (fireworks.length < 5 && Math.random() < 0.05) {
-      createFirework();
-    }
+    if (fireworks.length < 5 && Math.random() < 0.05) createFirework();
     requestAnimationFrame(animateFireworks);
   }
-
   animateFireworks();
 </script>
 </body>
